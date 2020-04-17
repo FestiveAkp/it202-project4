@@ -12,6 +12,7 @@
         <!-- Custom CSS and JS -->
         <link rel="stylesheet" href="style.css">
         <script defer src="app.js"></script>
+        <script defer src="tracker.js"></script>
     </head>
     <body>
         <header class=" mdc-top-app-bar">
@@ -26,7 +27,15 @@
             </div>
         </header>
         <main class="mdc-top-app-bar--fixed-adjust">
-            <div class="view" id="search">search</div>
+            <div class="mdc-form-field view" id="search">
+                <label for="country-input">Add countries to track:</label>
+                <input list="countries" id="country-input"/>
+                <datalist id="countries"></datalist>
+                <button id="country-add-btn" class="mdc-button mdc-button--raised">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Add Country</span>
+                </button>
+            </div>
             <div class="view" id="table">table</div>
             <div class="view" id="chart">chart</div>
         </main>
