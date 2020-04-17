@@ -6,3 +6,7 @@ body {
 div.view {
     display: none;
 }
+
+div.view.active {
+    display: block;
+}
