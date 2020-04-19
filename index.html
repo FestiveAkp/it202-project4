@@ -27,17 +27,35 @@
             </div>
         </header>
         <main class="mdc-top-app-bar--fixed-adjust">
-            <div class="mdc-form-field view" id="search">
-                <label for="country-input">Add countries to track:</label>
-                <input list="countries" id="country-input"/>
-                <datalist id="countries"></datalist>
-                <button id="country-add-btn" class="mdc-button mdc-button--raised">
+            <div class="view" id="search">
+                <div class="search-row">
+                    <div class="mdc-text-field mdc-text-field--outlined">
+                        <input list="countries" id="country-input" class="mdc-text-field__input"/>
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="country-input" class="mdc-floating-label">Add countries to track</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                        <datalist id="countries"></datalist>
+                    </div>
+                    <button id="add-country" class="mdc-button mdc-button--raised">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label">Add Country</span>
+                    </button>
+                </div>
+                <ul class="country-tracking-list mdc-list"></ul>
+                <button id="create-chart" class="mdc-button mdc-button--raised">
                     <span class="mdc-button__ripple"></span>
-                    <span class="mdc-button__label">Add Country</span>
+                    <span class="mdc-button__label">Create chart</span>
                 </button>
             </div>
             <div class="view" id="table">table</div>
             <div class="view" id="chart">chart</div>
         </main>
+        <script>
+            const textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field'));
+        </script>
     </body>
 </html>

@@ -5,8 +5,27 @@ body {
 /* Hide all views to start off with, then dynamically show using JS */
 div.view {
     display: none;
+    padding-top: 2rem;
 }
 
 div.view.active {
     display: block;
+}
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+label, input {
+    display: block;
+}
+
+div.search-row {
+    display: flex;
+    align-items: center;
+}
+
+button#add-country {
+    margin-left: 1rem;
 }
