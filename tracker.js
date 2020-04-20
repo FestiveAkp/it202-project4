@@ -4,6 +4,7 @@
 let countriesToTrack = [];
 let chosenStatistic = '';
 let countryData = {};
+let googleChartArray = [];
 
 
 // Function that creates a new MCW country list item
@@ -101,6 +102,9 @@ createChartButton.addEventListener('click', () => {
     // Break out if nothing's been inputted
     if (countriesToTrack.length === 0 || chosenStatistic === '') return;
 
+    // Reset chart array
+    googleChartArray = [];
+
     // Create table head
     const tableHead = document.createElement('thead');
     const tableHeadRow = document.createElement('tr');
@@ -115,6 +119,7 @@ createChartButton.addEventListener('click', () => {
     dateHeader.setAttribute('scope', 'col');
     dateHeader.textContent = 'Date';
     tableHeadRow.appendChild(dateHeader);
+    googleChartArray.push(['Date']);
 
     // Create headers for each country
     countriesToTrack.forEach(country => {
@@ -125,6 +130,7 @@ createChartButton.addEventListener('click', () => {
         newColumn.textContent = country;
 
         tableHeadRow.appendChild(newColumn);
+        googleChartArray[0].push(country);
     });
 
     // Create table body
@@ -144,6 +150,7 @@ createChartButton.addEventListener('click', () => {
         date.classList.add('mdc-data-table__cell');
         date.textContent = countryData.Afghanistan[i].date;
         row.appendChild(date);
+        googleChartArray.push([date.textContent]);
 
         // Create data nodes for each country
         countriesToTrack.forEach(country => {
@@ -155,6 +162,7 @@ createChartButton.addEventListener('click', () => {
 
             row.append(stat);
             tableBody.appendChild(row);
+            googleChartArray[i+1].push(parseInt(stat.textContent));
         });
     }
     
@@ -176,4 +184,37 @@ createChartButton.addEventListener('click', () => {
 
     // Navigate to table screen
     document.querySelector('a[href="#table"]').click();                 
+
+    // Delete placeholder text inside chart view
+    document.querySelector('h1#chart-placeholder').remove();
+
+    // Create chart
+    google.charts.load('current', {'packages':['corechart', 'line']});
+    const drawChart = () => {
+        const data = google.visualization.arrayToDataTable(googleChartArray);
+
+        const options = {
+            title: 'Cases over time',
+            curveType: '',
+            legend: { position: 'bottom' },
+            width: 1200,
+            height: 800,
+            hAxis: {
+                title: 'Time',
+                showTextEvery: 12
+            },
+            vAxis: {
+                title: '# of cases'
+            }
+        };
+
+        const chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChart);
+});
+
+// Enter the chart view whenever 'Show Chart' button is clicked
+document.querySelector('button#show-chart').addEventListener('click', () => {
+    document.querySelector('a[href="#chart"]').click();
 });

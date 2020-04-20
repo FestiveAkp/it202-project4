@@ -9,7 +9,8 @@
         <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" >
-
+        <!-- Google Charts -->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <!-- Custom CSS and JS -->
         <link rel="stylesheet" href="style.css">
         <script defer src="app.js"></script>
@@ -30,7 +31,7 @@
         <main class="mdc-top-app-bar--fixed-adjust">
 
             <div class="view" id="search">
-                <div class="search-row">
+                <div class="row">
                     <div class="mdc-text-field mdc-text-field--outlined">
                         <input list="countries" id="country-input" class="mdc-text-field__input"/>
                         <div class="mdc-notched-outline">
@@ -62,7 +63,6 @@
                     </div>
                     <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-enhanced-select custom-enhanced-select-width" style="transform-origin: center top; left: 0px; top: 56px; max-height: 283.219px;">
                         <ul class="mdc-list">
-                            <!-- <li data-value="" disabled="" aria-selected="false" role="option" class="mdc-list-item" tabindex="0"></li> -->
                             <li data-value="confirmed" role="option" class="mdc-list-item" tabindex="-1">Confirmed Cases</li>
                             <li data-value="deaths" role="option" class="mdc-list-item" tabindex="-1">Deaths</li>
                             <li data-value="recovered" role="option" class="mdc-list-item" tabindex="-1">Recovered</li>
@@ -76,13 +76,22 @@
             </div>
 
             <div class="view" id="table">
-                <h1 id="chart-header" class="mdc-typography--headline5">No countries have been tracked yet.</h1>
+                <div class="row">
+                    <h1 id="chart-header" class="mdc-typography--headline5">No countries have been tracked yet.</h1>
+                    <button id="show-chart" class="mdc-button mdc-button--raised">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label mdc-typography--button">Show chart</span>
+                    </button>
+                </div>
                 <div class="mdc-data-table">
                     <table class="mdc-data-table__table"></table>
                 </div>
             </div>
 
-            <div class="view" id="chart">chart</div>
+            <div class="view" id="chart">
+                <h1 id="chart-placeholder" class="mdc-typography--headline5">Chart is empty.</h1>
+                <div id="curve_chart"></div>
+            </div>
         </main>
     </body>
 </html>
