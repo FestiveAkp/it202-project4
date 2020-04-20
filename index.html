@@ -5,28 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IT 202 - Project 4</title>
         <!-- Material Components for the Web -->
-        <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css">
         <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" >
 
         <!-- Custom CSS and JS -->
         <link rel="stylesheet" href="style.css">
         <script defer src="app.js"></script>
         <script defer src="tracker.js"></script>
     </head>
-    <body>
+    <body class="mdc-typography">
         <header class=" mdc-top-app-bar">
             <div class="mdc-top-app-bar__row">
                 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                     <span class="mdc-top-app-bar__title">COVID-19 Tracker by Country</span>
                 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-                    <a href="#search" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Search">search</a>
-                    <a href="#table" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Data Table">table_chart</a>
-                    <a href="#chart" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Chart">insert_chart</a>
+                    <a href="#search" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded">search</a>
+                    <a href="#table" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded">table_chart</a>
+                    <a href="#chart" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded">insert_chart</a>
                 </section>
             </div>
         </header>
         <main class="mdc-top-app-bar--fixed-adjust">
+
             <div class="view" id="search">
                 <div class="search-row">
                     <div class="mdc-text-field mdc-text-field--outlined">
@@ -46,16 +48,41 @@
                     </button>
                 </div>
                 <ul class="country-tracking-list mdc-list"></ul>
+                <div class="mdc-select mdc-select--outlined demo-enhanced-select">
+                    <div class="mdc-select__anchor custom-enhanced-select-width">
+                        <i class="mdc-select__dropdown-icon"></i>
+                        <div id="demo-selected-text" class="mdc-select__selected-text" tabindex="0"></div>
+                        <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label id="outlined-label" class="mdc-floating-label">Choose a statistic</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                    <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-enhanced-select custom-enhanced-select-width" style="transform-origin: center top; left: 0px; top: 56px; max-height: 283.219px;">
+                        <ul class="mdc-list">
+                            <!-- <li data-value="" disabled="" aria-selected="false" role="option" class="mdc-list-item" tabindex="0"></li> -->
+                            <li data-value="confirmed" role="option" class="mdc-list-item" tabindex="-1">Confirmed Cases</li>
+                            <li data-value="deaths" role="option" class="mdc-list-item" tabindex="-1">Deaths</li>
+                            <li data-value="recovered" role="option" class="mdc-list-item" tabindex="-1">Recovered</li>
+                        </ul>
+                    </div>
+                </div>
                 <button id="create-chart" class="mdc-button mdc-button--raised">
                     <span class="mdc-button__ripple"></span>
-                    <span class="mdc-button__label">Create chart</span>
+                    <span class="mdc-button__label mdc-typography--button">Create chart</span>
                 </button>
             </div>
-            <div class="view" id="table">table</div>
+
+            <div class="view" id="table">
+                <h1 id="chart-header" class="mdc-typography--headline5">No countries have been tracked yet.</h1>
+                <div class="mdc-data-table">
+                    <table class="mdc-data-table__table"></table>
+                </div>
+            </div>
+
             <div class="view" id="chart">chart</div>
         </main>
-        <script>
-            const textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field'));
-        </script>
     </body>
 </html>

@@ -13,12 +13,8 @@ div.view.active {
 }
 
 main {
-    max-width: 960px;
+    max-width: 32rem;
     margin: 0 auto;
-}
-
-label, input {
-    display: block;
 }
 
 div.search-row {

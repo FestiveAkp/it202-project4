@@ -25,3 +25,8 @@ topAppBarButtons.forEach(button => {
         console.log('going to: ' + destination);
     });
 });
+
+// Instantiate MCW components
+const textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field'));
+const select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
+select.listen('MDCSelect:change', () => chosenStatistic = select.value);
